@@ -1,0 +1,59 @@
+---
+layout: jp
+title: リネージュ2Mのれんきん情報
+excerpt: "リネージュ2Mのアイテムを検索すると、該当アイテムが存在する錬金材料に関連するアイテムコレクションを確認できます。"
+tags: [リネージュ2M, リネージュ2m, れんきん, れんきん情報, れんきん探し]
+---
+<section class="recent-wrapper">
+  <header>
+    <h1>リネージュ2Mアイテム一覧</h1>
+  </header>
+  <div class="items" lang="jp">
+    <article class="item">
+      <a href="{{ site.baseurl }}list/weapon/page/1/"><h2>兵器</h2>
+      <img src="{{ site.url }}/images/wp.png"></a>
+    </article>
+    <article class="item">
+      <a href="{{ site.baseurl }}list/armor/page/1/"><h2>防具</h2>
+      <img src="{{ site.url }}/images/ar.png"></a>
+    </article>
+    <article class="item">
+      <a href="{{ site.baseurl }}list/accessary/page/1/"><h2>アクセサリー</h2>
+      <img src="{{ site.url }}/images/acc.png"></a>
+    </article>
+    <article class="item">
+      <a href="{{ site.baseurl }}list/skill/page/1/"><h2>スキルブック</h2>
+      <img src="{{ site.url }}/images/skill.png"></a>
+    </article>
+  </div>
+</section>
+
+<section class="recent-wrapper">
+  <header>
+    <h1>リネージュ2M錬金術情報</h1>
+  </header>
+  <div class="recent" lang="jp">
+    {% assign posts = site.categories.tips | where:"lang", "jp" %}
+      {% for post in posts %}
+        <article class="post">
+          <a href="{{ site.baseurl }}{{ post.url }}"><h2>{{ post.title }}</h2></a>
+        </article>
+      {% endfor %}
+  </div>
+</section>
+
+<section class="recent-wrapper">
+  <header>
+    <h1>リネージュ2M情報</h1>
+  </header>
+  <div class="recent" lang="jp">
+    {% assign posts = site.categories.info | where:"lang", "jp" %}
+      {% for post in posts %}
+        <article class="post">
+          <a href="{{ site.baseurl }}{{ post.url }}"><h2>{{ post.title }}</h2></a>
+        </article>
+      {% endfor %}
+  </div>
+</section>
+
+<h1><a href="https://twitter.com/L2MDCSCAM">Twitter</a></h1>

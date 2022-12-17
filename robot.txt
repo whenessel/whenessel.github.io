@@ -1,0 +1,5 @@
+user-agent: *
+allow: /
+disallow: /alchemist
+
+sitemap: https://whenessel.github.io/sitemap.xml

@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<a href="{{ site.baseurl }}/">Back</a>
+<article class="post">
+  <h1>{{ page.title }}<br>{{ page.excerpt }}</h1>
+
+  <div class="date">
+    {{ page.date | date: "%F" }}
+  </div>
+
+  <div class="entry">
+    {{ content }}
+  </div>
+
+</article>
+<a href="{{ site.baseurl }}/">Back</a>

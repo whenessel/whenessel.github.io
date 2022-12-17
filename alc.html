@@ -1,0 +1,127 @@
+---
+layout: default
+permalink: /alc/
+---
+{% for alchemist in site.data.alchemist %}
+  <div class="recipe_lists" id="{{ alchemist.name | remove: ' ' }}">
+    <h1 class="ko">{{ alchemist.name }}</h1>
+    <h1 class="jp">{{ alchemist.jp }}</h1>
+
+      {% assign recipe_list = "" | split: ',' %}
+      {% for recipe in alchemist.racipe %}
+        {% assign page = recipe | split: "-" %}
+        {% assign recipe_list = recipe_list | push: page[0] %}
+      {% endfor %}
+
+      {% assign recipe_list = recipe_list | uniq %}
+    <div class="recipes">
+      <ul class="ko">
+        {% for recipe in recipe_list %}
+          <li>
+            <button class="view_recipe" value="recipe_{{ recipe }}">일반 연금{{ recipe }}</button>
+          </li>
+        {% endfor %}
+      </ul>
+      <ul class="jp">
+        {% for recipe in recipe_list %}
+        <li>
+          <button class="view_recipe" value="recipe_{{ recipe }}">ふつう錬金{{ recipe }}</button>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    {% for recipe in site.data.recipe %}
+    <div class="recipe_object" id="recipe_{{ recipe.no }}">
+      <h1 class="ko">일반 연금{{ recipe.no }}</h1>
+      <h1 class="jp">ふつう錬金{{ recipe.no }}</h1>
+      <ul class="ko">
+        {% for object in recipe.recipe %}
+          {% assign object2 = object | split: "," %}
+          <li>
+          {% for stuff in object2 %}
+            <span>
+              {{ stuff }}
+            </span>
+          {% endfor %}
+          </li>
+        {% endfor %}
+      </ul>
+      <ul class="jp">
+        {% for object in recipe.jp %}
+          {% assign object2 = object | split: "," %}
+          <li>
+          {% for stuff in object2 %}
+            <span>
+              {{ stuff }}
+            </span>
+          {% endfor %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+
+    <ul class="ko">
+      {% assign num = alchemist.up.size %}
+      {% assign range = (0..num) %}
+      {% assign pre_recipe = 0 %}
+      {% for i in range %}
+        {% if i == num %}
+          {% break %}
+        {% else %}
+            {% assign page = alchemist.racipe[i] | split: "-" %}
+            {% if page[0] != pre_recipe %}
+              {% if pre_recipe != 0 %}
+                <li style="margin-top:0.5em;">
+              {% else %}
+                <li>
+              {% endif %}
+            {% else %}
+            <li>
+            {% endif %}
+            <button class="view_recipe" onclick="view({{ page[0] }});" value="recipe_{{ page[0] }}">일반 연금{{ page[0] }} - {{ page[1] }}</button>
+            +{{ alchemist.up[i] }} {{ alchemist.name }} ({{ alchemist.rand[i] }})
+            </li>
+          {% assign pre_recipe = page[0] %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+    <ul class="jp">
+      {% for i in range %}
+        {% if i == num %}
+          {% break %}
+        {% else %}
+          <li>
+            {% assign page = alchemist.racipe[i] | split: "-" %}
+            <button class="view_recipe" onclick="view({{ page[0] }});" value="recipe_{{ page[0] }}">ふつう錬金{{ page[0] }} - {{ page[1] }}</button>
+            +{{ alchemist.up[i] }} {{ alchemist.jp }} ({{ alchemist.rand[i] }})
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endfor %}
+
+
+
+<script>
+  var searching_item = getParameterByName('item');
+  searching_item = searching_item.replace(' ', '');
+  var searching_lng = getParameterByName('lng');
+
+  if(searching_item){
+    $("#"+searching_item).show();
+  }
+  if(searching_lng == "jp"){
+    $('.jp').show();
+  } else {
+    $('.ko').show();
+  }
+
+function view(page){
+  var recipe_object = "recipe_"+page;
+  $(".recipe_object").hide();
+  $("#"+recipe_object).show();
+}
+</script>

@@ -1,0 +1,76 @@
+---
+layout: default
+description: "You can search for items in Lineage 2M to find a collection of items related to the alchemy material in which the item exists."
+---
+<a href="{{ site.url }}/ko"><span class="flag flag-kr"> </span>   Kor</a>
+<a href="{{ site.url }}/jp"><span class="flag flag-jp"> </span>   Jap</a>
+
+<section class="recent-wrapper">
+  <header>
+    <h1>Lineage2m item list</h1>
+    If you can't use the search, please use the list
+  </header>
+  <div class="items" lang="ko">
+    <article class="item">
+      <h2>weapons</h2>
+      <img src="{{ site.url }}/images/wp.png"><br>
+      <a href="{{ site.baseurl }}ko/list/weapon/page/1/"><span class="flag flag-kr"> </span> Kor</a>
+      <a href="{{ site.baseurl }}jp/list/weapon/page/1/"><span class="flag flag-jp"> </span> Jap</a>
+    </article>
+    <article class="item">
+      <h2>armors</h2>
+      <img src="{{ site.url }}/images/ar.png"><br>
+      <a href="{{ site.baseurl }}ko/list/armor/page/1/"><span class="flag flag-kr"> </span> Kor</a>
+      <a href="{{ site.baseurl }}jp/list/armor/page/1/"><span class="flag flag-jp"> </span> Jap</a>
+    </article>
+    <article class="item">
+      <h2>accessories</h2>
+      <img src="{{ site.url }}/images/acc.png"><br>
+      <a href="{{ site.baseurl }}ko/list/accessary/page/1/"><span class="flag flag-kr"> </span> Kor</a>
+      <a href="{{ site.baseurl }}jp/list/accessary/page/1/"><span class="flag flag-jp"> </span> Jap</a>
+    </article>
+    <article class="item">
+      <h2>skills</h2>
+      <img src="{{ site.url }}/images/skill.png"><br>
+      <a href="{{ site.baseurl }}ko/list/skill/page/1/"><span class="flag flag-kr"> </span> Kor</a>
+      <a href="{{ site.baseurl }}jp/list/skill/page/1/"><span class="flag flag-jp"> </span> Jap</a>
+    </article>
+  </div>
+</section>
+
+<section class="recent-wrapper">
+  <header>
+    <h1>Lineage2m Alchemy information</h1>
+  </header>
+  <div class="recent" lang="ko">
+    {% assign posts = site.categories.tips | where:"lang", "ko" | sort: 'lang-ref' %}
+    {% if posts.size > 1 %}
+      {% for post in posts %}
+        <article class="post">
+          <h2>{{ post.title }}</h2>
+          <h2>{{ post.jp }}</h2>
+          <a href="{{ site.baseurl }}{{ post.url }}"><span class="flag flag-kr"> </span> Kor</a>
+          <a href="{{ site.baseurl }}{{ post.url | replace: "ko", "jp" }}"><span class="flag flag-jp"> </span>Jap</a>
+        </article>
+      {% endfor %}
+    {% endif %}
+  </div>
+</section>
+
+<section class="recent-wrapper">
+  <header>
+    <h1>Lineage2m information</h1>
+  </header>
+  <div class="recent" lang="jp">
+    {% assign posts = site.categories.info | where:"lang", "jp" %}
+      {% for post in posts %}
+        <article class="post">
+          <h2>{{ post.title }}</h2>
+          <a href="{{ site.baseurl }}{{ post.url | replace: "ko", "jp" }}"><span class="flag flag-jp"> </span>Jap</a>
+        </article>
+      {% endfor %}
+  </div>
+</section>
+
+
+<h1><a href="https://twitter.com/L2MDCSCAM">Twitter</a></h1>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }}</title>
+
+    {% include meta.html %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css?version=20221130" />
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/flags.css?ddasda=42342423">
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+    <link rel="alternate" hreflang="ko" href="{{ site.url }}{{ page.url | replace: "jp", "ko" }}">
+    <link rel="alternate" hreflang="jp" href="{{ site.url }}{{ page.url | replace: "ko", "jp" }}">
+    <script src="{{ base.url | prepend: site.url }}/assets/search.js?version=20221130"></script>
+<meta name="google-site-verification" content="CEG1EpI5wEnKjX0L5YuLaQY6yWkaggD0qWOZxXj3ApM" />
+  </head>
+
+  <body>
+
+    <div class="wrapper-masthead">
+
+      <div class="container">
+        <div class="lang">
+          <a href="{{ site.url }}/ko"><span class="flag flag-kr"> </span>  한국어</a>
+          <a href="{{ site.url }}/jp"><span class="flag flag-jp"> </span>  日本語</a>
+          <span class="pull-left"  style="font-size:2em;float:right;">X</span>
+        </div>
+        <header class="masthead clearfix">
+          <div class="logo">
+            <a href="{{ site.baseurl }}/jp/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+          </div>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="{{ site.baseurl }}/jp">{{ site.name }}</a></h1>
+
+          </div>
+
+          <div class="search">
+            <label><input type='radio' name='type' value='1' checked>ふつう</label>
+            <label><input type='radio' name='type' value='2'>上級</label>
+            <input type="hidden" id='insert_target' readonly style='background: #cacaca' name='item'>
+            <input type="text" id='search_area' placeholder="アイテムの検索">
+            <div id='autoMaker'></div>
+          </div>
+        </header>
+      </div>
+
+      <div id="main" role="main" class="container">
+        <span class="pull-left" style="font-size:2em;">+</span>
+        {{ content }}
+      </div>
+
+    </div>
+    {% include analytics.html %}
+  </body>
+</html>

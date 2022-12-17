@@ -1,0 +1,67 @@
+{% assign page2 = page.url | split: "/" %}
+
+{% if page2.size == 3 %}
+  {% assign page = page.url | append: "weapon/page/1" %}
+  {% assign page = page | split: "/" %}
+{% elsif page2.size == 4 %}
+  {% assign page = page.url | append: "page/1" %}
+  {% assign page = page | split: "/" %}
+{% elsif page2.size == 5 %}
+  {% assign page = page.url | append: "1" %}
+  {% assign page = page | split: "/" %}
+{% else %}
+  {% assign page = page.url | split: "/" %}
+{% endif %}
+
+
+{% assign type = "item_" | append: page[3] %}
+{% assign paging = page[5] | minus: 1 %}
+{% if paging == 0 %}
+  {% assign paging = 0 %}
+{% else %}
+  {% assign paging = paging | times: 40 %}
+{% endif %}
+{% assign list=site.data[type] %}
+{% assign no=1 %}
+
+<section class="list-wrapper">
+  <header>
+    <h1>아이템 목록</h1>
+    <ul class="menu">
+      <li><a href="{{ site.url }}{{ page[0] }}/{{ page[1] }}/{{ page[2] }}/weapon/{{ page[4] }}/1">무기</a></li>
+      <li><a href="{{ site.url }}{{ page[0] }}/{{ page[1] }}/{{ page[2] }}/armor/{{ page[4] }}/1">방어구</a></li>
+      <li><a href="{{ site.url }}{{ page[0] }}/{{ page[1] }}/{{ page[2] }}/accessary/{{ page[4] }}/1">장신구</a></li>
+      <li><a href="{{ site.url }}{{ page[0] }}/{{ page[1] }}/{{ page[2] }}/skill/{{ page[4] }}/1">스킬북</a></li>
+    </ul>
+    전체 : {{ paging }}/{{ list.size }}
+  </header>
+  <div class="list" lang="{{ page[1] }}">
+    <article class="items">
+      <ul>
+        {% for item in list in array offset:paging %}
+          {% if no == 41 %}
+            {% break %}
+          {% else %}
+            <li>
+              <a href="https://whenessel.github.io/{{ page[1] }}/alchemist/?item={{ item.no }}">
+                <img class="thumb" src="https://wstatic-cdn.plaync.com/powerbook/l2m/icon/Icon_128/Item/Icon_{{ item.icon }}" onerror="this.src='https://wstatic-cdn.plaync.com/plaync/gameinfo/img/thumb-lineage2m.png';">
+                {{ item.name }}
+              </a>
+            </li>
+            {% assign no = no | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </article>
+  </div>
+
+  <footer>
+    {% assign page_all = list.size | divided_by: 40.0 }}}
+    {% assgin page_all = page_all | ceil %}
+    <ul class="menu">
+      {% for i in (1..page_all) %}
+      <li><a href="{{ site.url }}{{ page[0] }}/{{ page[1] }}/{{ page[2] }}/{{ page[3] }}/{{ page[4] }}/{{ i }}">{{ i }}</a></li>
+      {% endfor %}
+    </ul>
+  </footer>
+</<section>
